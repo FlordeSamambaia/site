@@ -180,3 +180,8 @@ footer a:hover {
   font-weight: bold;
   color: var(--vermelho);
 }
+@media (max-width: 600px) {
+  .profile {
+    display: block;
+  }
+}
