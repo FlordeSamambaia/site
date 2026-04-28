@@ -1,0 +1,30 @@
+{
+  "name": "flordesamambaia",
+  "version": "1.0.0",
+  "description": "Flor de Samambaia",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FlordeSamambaia/site.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FlordeSamambaia/site/issues"
+  },
+  "homepage": "https://github.com/FlordeSamambaia/site#readme",
+  "dependencies": {
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
+    "vite": "^8.0.8"
+  }
+}
