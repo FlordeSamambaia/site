@@ -1,4 +1,7 @@
-const anos = [
+import { useEffect, useState } from 'react'
+import { supabase } from '../../lib/supabase'
+
+const fallback = [
   {
     ano: '2024',
     cor: '#e99300',
@@ -33,7 +36,34 @@ const anos = [
   },
 ]
 
+const cores = ['#e99300', '#0096a3', '#c30d09', '#01582b']
+
+function agruparPorAno(eventos) {
+  const map = {}
+  eventos.forEach((e) => {
+    const ano = e.data ? new Date(e.data).getFullYear().toString() : 'Sem data'
+    if (!map[ano]) map[ano] = []
+    map[ano].push(e.titulo)
+  })
+  return Object.keys(map)
+    .sort()
+    .map((ano, i) => ({ ano, cor: cores[i % cores.length], eventos: map[ano] }))
+}
+
 function Trajetoria() {
+  const [anos, setAnos] = useState(fallback)
+
+  useEffect(() => {
+    async function buscar() {
+      const { data, error } = await supabase
+        .from('eventos')
+        .select('titulo, data')
+        .order('data')
+      if (!error && data?.length) setAnos(agruparPorAno(data))
+    }
+    buscar()
+  }, [])
+
   return (
     <section id="trajetoria.html" className="section">
       <h2>Trajetória</h2>

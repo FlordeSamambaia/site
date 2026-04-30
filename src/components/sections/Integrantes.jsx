@@ -1,4 +1,7 @@
-const integrantes = [
+import { useEffect, useState } from 'react'
+import { supabase } from '../../lib/supabase'
+
+const fallback = [
   {
     nome: 'Érica Marques',
     instrumento: 'Pandeirista',
@@ -32,22 +35,40 @@ const integrantes = [
 ]
 
 function Integrantes() {
+  const [integrantes, setIntegrantes] = useState(fallback)
+
+  useEffect(() => {
+    async function buscar() {
+      const { data, error } = await supabase
+        .from('integrantes')
+        .select('nome, instrumento, bio, foto_url')
+        .eq('ativo', true)
+        .order('ordem')
+      if (!error && data?.length) setIntegrantes(data)
+    }
+    buscar()
+  }, [])
+
   return (
     <section id="integrantes.html" className="section">
       <h2>As Integrantes</h2>
-      {integrantes.map((i) => (
-        <div key={i.nome} className="profile">
-          <picture>
-            <source srcSet={i.img.webp} type="image/webp" />
-            <img src={i.img.jpg} loading="lazy" alt={`Grupo de Samba Flor de Samambaia - Foto de ${i.nome} - ${i.instrumento}`} width="180" height="120" />
-          </picture>
-          <div>
-            <h3>{i.nome}</h3>
-            <h4>{i.instrumento}</h4>
-            <p>{i.bio}</p>
+      {integrantes.map((i) => {
+        const src = i.foto_url || i.img?.jpg
+        const srcWebp = i.img?.webp
+        return (
+          <div key={i.nome} className="profile">
+            <picture>
+              {srcWebp && <source srcSet={srcWebp} type="image/webp" />}
+              <img src={src} loading="lazy" alt={`Grupo de Samba Flor de Samambaia - Foto de ${i.nome} - ${i.instrumento}`} width="180" height="120" />
+            </picture>
+            <div>
+              <h3>{i.nome}</h3>
+              <h4>{i.instrumento}</h4>
+              <p>{i.bio}</p>
+            </div>
           </div>
-        </div>
-      ))}
+        )
+      })}
     </section>
   )
 }

@@ -1,4 +1,7 @@
-const clippings = [
+import { useEffect, useState } from 'react'
+import { supabase } from '../../lib/supabase'
+
+const fallback = [
   {
     img: 'img/clipping/mgtv.jpg',
     alt: 'Grupo de Samba Flor de Samambaia no MGTV 1ª Edição – Zona da Mata (24/01/2025)',
@@ -32,15 +35,37 @@ const clippings = [
 ]
 
 function Clipping() {
+  const [clippings, setClippings] = useState(fallback)
+
+  useEffect(() => {
+    async function buscar() {
+      const { data, error } = await supabase
+        .from('clipping')
+        .select('titulo, veiculo, url, imagem_url, data_publicacao')
+        .eq('ativo', true)
+        .order('data_publicacao', { ascending: false })
+      if (!error && data?.length) setClippings(data)
+    }
+    buscar()
+  }, [])
+
   return (
     <section id="clipping.html" className="section">
       <h2>Clipping</h2>
-      {clippings.map((c) => (
-        <div key={c.href} className="clipping-item">
-          <img src={c.img} loading="lazy" alt={c.alt} />
-          <a target="_blank" rel="noreferrer" href={c.href}>{c.label}</a>
-        </div>
-      ))}
+      {clippings.map((c) => {
+        const img = c.imagem_url || c.img
+        const href = c.url || c.href
+        const label = c.veiculo
+          ? `${c.titulo} – ${c.veiculo}${c.data_publicacao ? ` (${new Date(c.data_publicacao).toLocaleDateString('pt-BR')})` : ''}`
+          : c.label
+        const alt = c.alt || `Grupo de Samba Flor de Samambaia - ${label}`
+        return (
+          <div key={href} className="clipping-item">
+            <img src={img} loading="lazy" alt={alt} />
+            <a target="_blank" rel="noreferrer" href={href}>{label}</a>
+          </div>
+        )
+      })}
     </section>
   )
 }

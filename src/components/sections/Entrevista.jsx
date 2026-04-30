@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { supabase } from '../../lib/supabase'
 
-const perguntas = [
+const fallback = [
   {
     pergunta: '1. Como surgiu o grupo Flor de Samambaia?',
     resposta: 'O grupo surgiu da conexão entre mulheres que já participavam de coletivos femininos e musicais em Juiz de Fora, como Guerreiras de Clara, Samba das Mulheres na Praça e a Caminhada Lésbica. Todas já tocavam em outros projetos, mas sentiram a necessidade de criar um grupo com identidade própria, onde pudessem tocar as músicas que amam e expressar sua arte de forma autêntica.',
@@ -32,7 +33,20 @@ const perguntas = [
 ]
 
 function Entrevista() {
+  const [perguntas, setPerguntas] = useState(fallback)
   const [aberto, setAberto] = useState(null)
+
+  useEffect(() => {
+    async function buscar() {
+      const { data, error } = await supabase
+        .from('faq')
+        .select('pergunta, resposta')
+        .eq('ativo', true)
+        .order('ordem')
+      if (!error && data?.length) setPerguntas(data)
+    }
+    buscar()
+  }, [])
 
   function toggle(index) {
     setAberto(aberto === index ? null : index)
