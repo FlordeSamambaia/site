@@ -1,6 +1,6 @@
 import Header from './components/Header'
-import Nav from './components/Nav'
 import Footer from './components/Footer'
+import Hero from './components/sections/Hero'
 import Sobre from './components/sections/Sobre'
 import Integrantes from './components/sections/Integrantes'
 import Trajetoria from './components/sections/Trajetoria'
@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <Header />
-      <Nav />
+      <Hero />
       <Sobre />
       <Integrantes />
       <Trajetoria />

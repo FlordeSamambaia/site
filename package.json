@@ -2,6 +2,7 @@
   "name": "flordesamambaia",
   "version": "1.0.0",
   "description": "Flor de Samambaia",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "dev": "vite",
@@ -21,8 +22,14 @@
   "homepage": "https://github.com/FlordeSamambaia/site#readme",
   "dependencies": {
     "@supabase/supabase-js": "^2.105.1",
+    "autoprefixer": "^10.5.0",
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^1.14.0",
+    "postcss": "^8.5.14",
     "react": "^19.2.5",
-    "react-dom": "^19.2.5"
+    "react-dom": "^19.2.5",
+    "tailwindcss": "^3.4.19",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^6.0.1",
