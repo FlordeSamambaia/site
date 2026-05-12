@@ -6,38 +6,43 @@ import { supabase } from '../../lib/supabase'
 const fallback = [
   {
     imagem_url: 'img/clipping/mgtv.jpg',
-    titulo: 'Grupo de Samba Flor de Samambaia no MGTV 1ª Edição – Zona da Mata (24/01/2025)',
+    alt: 'Grupo de Samba Flor de Samambaia no MGTV 1ª Edição – Zona da Mata (24/01/2025)',
     url: 'https://globoplay.globo.com/v/13286127/?s=58m45s',
-    veiculo: 'MGTV 1ª Edição – Zona da Mata',
+    veiculo: 'TV',
+    titulo: 'MGTV 1ª Edição – Zona da Mata',
     data_publicacao: '2025-01-24'
   },
   {
     imagem_url: 'img/clipping/radio.jpg',
-    titulo: 'Grupo de Samba Flor de Samambaia na Rádio Transamérica (17/01/2025)',
+    alt: 'Grupo de Samba Flor de Samambaia na Rádio Transamérica (17/01/2025)',
     url: 'https://www.youtube.com/live/LDS4V_hOZBQ',
-    veiculo: 'Rádio Transamérica',
+    veiculo: 'Rádio',
+    titulo: 'Rádio Transamérica',
     data_publicacao: '2025-01-17'
   },
   {
     imagem_url: 'img/clipping/urutu.jpg',
-    titulo: 'Grupo de Samba Flor de Samambaia em Entrevista Papo de Urutu (18/12/2024)',
+    alt: 'Grupo de Samba Flor de Samambaia em Entrevista Papo de Urutu (18/12/2024)',
     url: 'https://www.youtube.com/watch?v=jRQJGyQ0lXg',
-    veiculo: 'Entrevista Papo de Urutu',
+    veiculo: 'Youtube',
+    titulo: 'Entrevista Papo de Urutu',
     data_publicacao: '2024-12-18'
 
   },
   {
     imagem_url: 'img/clipping/pjf.jpg',
-    titulo: 'Grupo de Samba Flor de Samambaia na Reportagem PJF, Beco da Cultura (06/12/2024)',
+    alt: 'Grupo de Samba Flor de Samambaia na Reportagem PJF, Beco da Cultura (06/12/2024)',
     url: 'https://www.pjf.mg.gov.br/noticias/view.php?modo=link2&idnoticia2=85137',
-    veiculo: 'Reportagem PJF, Beco da Cultura',
+    veiculo: 'Notícia',
+    titulo: 'Reportagem PJF, Beco da Cultura',
     data_publicacao: '2024-12-06'
   },
   {
     imagem_url: 'img/clipping/tribuna.jpg',
-    titulo: 'Grupo de Samba Flor de Samambaia na Reportagem Tribuna de Minas (17/05/2024)',
+    alt: 'Grupo de Samba Flor de Samambaia na Reportagem Tribuna de Minas (17/05/2024)',
     url: 'https://tribunademinas.com.br/noticias/cultura/17-05-2024/flor-de-samambaia-apresenta-se-nesta-sexta-na-autoria.html',
-    veiculo: 'Reportagem Tribuna de Minas',
+    veiculo: 'Jornal',
+    titulo: 'Reportagem Tribuna de Minas',
     data_publicacao: '2024-05-17'
   },
 ]
