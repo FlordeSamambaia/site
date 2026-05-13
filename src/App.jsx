@@ -1,5 +1,6 @@
 import Header from './components/Header'
 import Footer from './components/Footer'
+import WhatsAppButton from './components/WhatsAppButton'
 import Hero from './components/sections/Hero'
 import Sobre from './components/sections/Sobre'
 import Integrantes from './components/sections/Integrantes'
@@ -20,6 +21,7 @@ function App() {
       <Entrevista />
       <Contato />
       <Footer />
+      <WhatsAppButton />
     </>
   )
 }
